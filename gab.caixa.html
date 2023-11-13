@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Caixa Eletrônico</title>
+</head>
+<fieldset>
+<body>
+    <div class="atm-container">
+        <div class="atm-title">Caixa Eletrônico</div>
+        <br>
+        <button class="atm-button" onclick="sacar()">           Saque           </button>
+        <button class="atm-button" onclick="depositar()">       Depósito        </button>
+        <button class="atm-button" onclick="pagamento()">       Pagamentos      </button>
+        <button class="atm-button" onclick="transferencia()">   Transferência   </button>
+        <button class="atm-button" onclick="credito()">         Crédito         </button>
+        <button class="atm-button" onclick="outrosServicos()">  Outros Serviços </button>
+        <button class="atm-button" onclick="extrato()">         Extrato         </button>
+        <p id="mensagem"></p>
+    </div>
+    <script>
+
+        fieldset{
+                    margin-top: 100px;
+                    margin-bottom: auto;
+                    margin-left: 20%;
+                    margin-right: 20%;
+                    text-align: center;
+                    color: rgb(0, 0, 0);
+                    background-color: rgba(145, 12, 12, 0.315);
+                
+                }
+
+        var saldo = 15000;
+        function exibirMensagem(mensagem) {
+            document.getElementById("mensagem").textContent = mensagem;
+        }
+
+        function sacar() {
+            var valorSaque = parseFloat(prompt("Digite o valor que deseja sacar:"));
+
+            if (!isNaN(valorSaque) && valorSaque > 0 && valorSaque <= saldo) {
+                saldo -= valorSaque;
+                exibirMensagem("Saque realizado com sucesxso. Saldo atual: R$" + saldo.toFixed(2));
+            } else {
+                exibirMensagem("Valor inválido ou saldo insuficiente.");
+            }
+        }
+
+        function depositar() {
+            var valorDeposito = parseFloat(prompt("Digite o valor que deseja depositar:"));
+
+            if (!isNaN(valorDeposito) && valorDeposito > 0) {
+                saldo += valorDeposito;
+                exibirMensagem("Depósito realizado com sucesso. Saldo atual: R$" + saldo.toFixed(2));
+            } else {
+                exibirMensagem("Valor inválido.");
+            }
+        }
+
+        function pagamento() {
+            var valorPagamento = parseFloat(prompt("Digite o valor do pagamento:"));
+
+            if (!isNaN(valorPagamento) && valorPagamento > 0 && valorPagamento <= saldo) {
+                saldo -= valorPagamento;
+                exibirMensagem("Pagamento realizado com sucesso. Saldo atual: R$" + saldo.toFixed(2));
+            } else {
+                exibirMensagem("Valor inválido ou saldo insuficiente para pagamento.");
+            }
+        }
+
+        function transferencia() {
+            var valorTransferencia = parseFloat(prompt("Digite o valor da transferência:"));
+
+            if (!isNaN(valorTransferencia) && valorTransferencia > 0 && valorTransferencia <= saldo) {
+                saldo -= valorTransferencia;
+                exibirMensagem("Transferência realizada com sucesso. Saldo atual: R$" + saldo.toFixed(2));
+            } else {
+                exibirMensagem("Valor inválido ou saldo insuficiente para transferência.");
+            }
+        }
+
+        function credito() {
+            var valorCredito = parseFloat(prompt("Digite o valor de crédito desejado:"));
+
+            if (!isNaN(valorCredito) && valorCredito > 0) {
+                exibirMensagem("Crédito concedido. Saldo atual: R$" + (saldo + valorCredito).toFixed(2));
+            } else {
+                exibirMensagem("Valor inválido para crédito.");
+            }
+        }
+
+        function outrosServicos() {
+            exibirMensagem("Outros serviços disponíveis em breve.");
+        }
+
+        function extrato() {
+            exibirMensagem("Extrato:\nSaldo atual: R$" + saldo.toFixed(2));
+        }
+    </script>
+    
+</body>
+</fieldset>
+</html>
+
